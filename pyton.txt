@@ -1,0 +1,37 @@
+s=Service('C:/Users/Zoram/Downloads/chromedriver.exe')
+driver = webdriver.Chrome(service=s)
+driver.get("https://qa.neapro.site/login")
+driver.set_window_size(1024, 600)
+driver.maximize_window()
+driver.find_element(By.CSS_SELECTOR, ".fieldset:nth-child(1) input").click()
+driver.find_element(By.CSS_SELECTOR, ".fieldset:nth-child(1) input").send_keys("test@test.ru")
+driver.find_element(By.CSS_SELECTOR, ".fieldset:nth-child(2) input").send_keys("123456")
+driver.find_element(By.CSS_SELECTOR, ".btn").click()
+time.sleep(3)
+
+#открываем блок Паспорт
+driver.find_element(By.CSS_SELECTOR, ".form:nth-child(2) .document-tile:nth-child(1) > .document-name").click()
+
+#Фамилия
+driver.find_element(By.ID, "surname").clear()
+driver.find_element(By.ID, "surname").send_keys("Иванов")
+driver.find_element(By.CSS_SELECTOR, ".vue-dadata__input").clear()   #НЕ РУГАЕТСЯ,НО НЕ РАБОТАЕТ
+driver.find_element(By.CSS_SELECTOR, ".vue-dadata__input").send_keys("Волгоградская обл")
+
+
+s=Service('C:/Users/Zoram/Downloads/chromedriver.exe')
+driver = webdriver.Chrome(service=s)
+driver.get("https://adminqa.neapro.site/login/")
+driver.set_window_size(1024, 600)
+driver.maximize_window()
+driver.find_element(By.ID, "admin_email").click()
+driver.find_element(By.ID, "admin_email").send_keys("moderat@neapro.ru")
+driver.find_element(By.ID, "admin_password").click()
+driver.find_element(By.ID, "admin_password").send_keys("Aa123456")
+driver.find_element(By.NAME, "commit").click()
+driver.find_element(By.LINK_TEXT, "Сотрудники").click()
+driver.find_element(By.LINK_TEXT, "Администраторы").click()
+driver.find_element(By.LINK_TEXT, "Создано").click()
+driver.find_element(By.XPATH, "//*[@id='admin_1']/td[9]/div/a[3]").click()
+time.sleep(5)
+driver.switch_to().alert.accept()
